@@ -1,0 +1,100 @@
+import java.util.Scanner;
+
+// Entry point class
+public class Computing {
+    public static void main(String[] args) {
+        // Create an instance of the Calculator class
+        Calculator calculator = new Calculator();
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter any number, or 0 to stop");
+
+        // Loop to accept numbers until 0 is entered
+        while (true) {
+            int number = input.nextInt(); // Read a number from the user
+            if (number == 0) { // Check for sentinel value (0)
+                break; // Exit loop when 0 is entered
+            }
+            calculator.addNumber(number); // Add the number to the calculations
+        }
+
+        // Perform computations and display results
+        System.out.println("The sum is: " + calculator.computeSum());
+        System.out.println("The difference is: " + calculator.computeSubtract());
+        System.out.println("The product is: " + calculator.computeMultiply());
+        System.out.println("The quotient is: " + calculator.computeDivide());
+        System.out.println("The modulo is: " + calculator.computeModulo());
+
+        // Ask for the user's name
+        System.out.print("Enter your name: ");
+        String name = input.next();  // Read the name entered by the user
+
+        // Display "Program by" with the user's name
+        System.out.println("\nProgram by: " + name);
+    }
+}
+
+// Class that handles the calculation logic
+class Calculator {
+    // Private attributes for sum and numbers
+    private int fnumber;
+    private int snumber;
+
+    // Constructor initializes numbers to 0
+    public Calculator() {
+        this.fnumber = 0;
+        this.snumber = 0;
+    }
+
+    // Setter for fnumber
+    public void setFNumber(int fnumber) {
+        this.fnumber = fnumber;
+    }
+
+    // Setter for snumber
+    public void setSNumber(int snumber) {
+        this.snumber = snumber;
+    }
+
+    // Method to add a number to the calculations
+    public void addNumber(int number) {
+        if (this.fnumber == 0) {
+            this.fnumber = number;
+        } else {
+            this.snumber = number;
+        }
+    }
+
+    // Method to compute the sum of the two numbers
+    public int computeSum() {
+        return fnumber + snumber;
+    }
+
+    // Method to compute the subtraction of the two numbers
+    public int computeSubtract() {
+        return fnumber - snumber;
+    }
+
+    // Method to compute the multiplication of the two numbers
+    public int computeMultiply() {
+        return fnumber * snumber;
+    }
+
+    // Method to compute the division of the two numbers
+    public double computeDivide() {
+        if (snumber == 0) {
+            System.out.println("Division by zero is not allowed!");
+            return Double.NaN; // Return NaN if division by zero
+        }
+        return (double) fnumber / snumber;
+    }
+
+    // Method to compute the modulo of the two numbers
+    public int computeModulo() {
+        if (snumber == 0) {
+            System.out.println("Modulo by zero is not allowed!");
+            return 0; // Return 0 if modulo by zero
+        }
+        return fnumber % snumber;
+    }
+}
